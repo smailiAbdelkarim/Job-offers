@@ -18,6 +18,13 @@
             @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
         </div>
     </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserType, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownList("UserType",null,new { @class = "form-control"})
+        </div>
+    </div>
+
 
 
     <div class="form-group">
@@ -40,7 +47,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-primary" width="100px" value="Register" />
+            <input type="submit" class="btn btn-success" width="100px" value="Register" />
         </div>
     </div>
 }

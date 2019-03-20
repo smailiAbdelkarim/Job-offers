@@ -139,6 +139,7 @@ namespace WebApplication1.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.UserType = new SelectList(new[] { "Publisher", "Researcher" });
             return View();
         }
 
@@ -151,7 +152,8 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+                ViewBag.UserType = new SelectList(new[] { "Publisher", "Researcher" });
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email,UserType = model.UserType};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -313,7 +315,7 @@ namespace WebApplication1.Controllers
             if (!await SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
             {
                 return View("Error");
-            }
+            
             return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
         }
 
